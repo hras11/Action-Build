@@ -1086,6 +1086,11 @@ jobs:
             set_config "CONFIG_KSU_SUSFS_HIDE_KSU_SUSFS_SYMBOLS=y"
             set_config "CONFIG_KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG=y"
             set_config "CONFIG_KSU_SUSFS_OPEN_REDIRECT=y"
+            # SUSFS PRIORITY_UID_FILTER (新增特性，KSU/SukiSU 源码已无条件调用
+            # susfs_parse_priority_app_strings / susfs_set_priority_uid_filter，
+            # 必须开启此宏以暴露 include/linux/susfs.h 中的函数声明，否则编译报
+            # -Wimplicit-function-declaration 错误)
+            set_config "CONFIG_KSU_SUSFS_PRIORITY_UID_FILTER=y"
           else
             set_config "CONFIG_KSU_SUSFS=n"
           fi
